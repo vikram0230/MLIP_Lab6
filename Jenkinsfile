@@ -17,16 +17,12 @@ pipeline {
                 sh '''#!/bin/bash
                 echo 'Test Step: We run testing tool like pytest here'
 
-                # TODO fill out the path to conda here
-                conda init
-                # sudo /PATH/TO/CONDA init
+                # Initialize conda with full path
+                /opt/conda/bin/conda init bash
+                source ~/.bashrc
 
-                # TODO Complete the command to run pytest
-                conda run -n mlip pytest test_utility.py
-                # sudo /PATH/TO/CONDA run -n <Envinronment Name> <Command you want to run>
-
-                # echo 'pytest not runned'
-                # exit 1 #comment this line after implementing Jenkinsfile
+                # Run pytest using conda
+                /opt/conda/bin/conda run -n mlip pytest test_utility.py
                 '''
             }
         }
