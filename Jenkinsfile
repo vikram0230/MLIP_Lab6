@@ -17,12 +17,15 @@ pipeline {
                 sh '''#!/bin/bash
                 echo 'Test Step: We run testing tool like pytest here'
 
-                # Initialize conda with full path
-                /opt/conda/bin/conda init bash
-                source ~/.bashrc
+                # Create and activate virtual environment
+                python3 -m venv venv
+                source venv/bin/activate
 
-                # Run pytest using conda
-                /opt/conda/bin/conda run -n mlip pytest test_utility.py
+                # Install required packages
+                pip install pytest numpy pandas scikit-learn
+
+                # Run pytest
+                pytest test_utility.py
                 '''
             }
         }
